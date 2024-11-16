@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-
+import MainLayout from "@components/Layout/Layout";
+import MyFooter from "@components/Footer/Footer";
+import MyHeader from "@components/Header/Header";
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <h3>Ecommerse reactjs</h3>      
-    </div>
-  )
+    return (
+        <div className="App">
+            <MyHeader />
+        </div>
+    );
 }
 
-export default App
+export default App;
