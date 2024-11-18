@@ -3,7 +3,10 @@
 
 .container {
     @include flex_box_custom(center, center, 0px);
-    background-color: antiquewhite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 .containerHeader {
     display: flex;
@@ -12,7 +15,6 @@
     height: 83px;
     width: 1250px;
 }
-
 .conatinerBoxIcon {
     @include flex_box_custom(center, center, 10px);
 }
