@@ -21,13 +21,22 @@ function MyHeader() {
                     <div className={conatinerBoxIcon}>
                         {dataBoxIcon.map((item) => {
                             return (
-                                <BoxIcon type={item.type} href={item.href} />
+                                <BoxIcon
+                                    key={item.type}
+                                    type={item.type}
+                                    href={item.href}
+                                />
                             );
                         })}
                     </div>
                     <div className={containerMenu}>
                         {dataMenu.slice(0, 3).map((item) => {
-                            return <Menu content={item.content} />;
+                            return (
+                                <Menu
+                                    key={item.content}
+                                    content={item.content}
+                                />
+                            );
                         })}
                     </div>
                 </div>
@@ -45,7 +54,12 @@ function MyHeader() {
                 <div className={containerBox}>
                     <div className={containerMenu}>
                         {dataMenu.slice(3, dataMenu.length).map((item) => {
-                            return <Menu content={item.content} />;
+                            return (
+                                <Menu
+                                    key={item.content}
+                                    content={item.content}
+                                />
+                            );
                         })}
                     </div>
                     <div className={conatinerBoxIcon}>

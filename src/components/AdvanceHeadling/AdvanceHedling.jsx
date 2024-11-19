@@ -2,6 +2,7 @@ import MainLayout from "@components/Layout/Layout";
 import styles from "./styles.module.scss";
 function AdvanceHeadling() {
     const { container, headline, containerMiddleBox, des, title } = styles;
+
     return (
         <MainLayout>
             <div className={container}>
