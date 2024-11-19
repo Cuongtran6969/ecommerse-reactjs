@@ -4,7 +4,6 @@ import CountdownBanner from "@components/CoutdownBanner/CountdownBanner";
 import ProductItem from "@components/ProductItem/ProductItem";
 function HeadingListProduct({ data }) {
     const { container, containerItem } = styles;
-    console.log(data);
 
     return (
         <MainLayout>
