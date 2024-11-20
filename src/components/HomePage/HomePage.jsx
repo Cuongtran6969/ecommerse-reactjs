@@ -1,4 +1,5 @@
 import Banner from "@components/Banner/Banner";
+import MyFooter from "@components/Footer/Footer";
 import MyHeader from "@components/Header/Header";
 import styles from "./styles.module.scss";
 import AdvanceHeadling from "@components/AdvanceHeadling/AdvanceHedling";
@@ -17,7 +18,7 @@ function HomePage() {
         });
     }, []);
     return (
-        <div className={container}>
+        <div>
             <MyHeader />
             <Banner />
             <Info />
@@ -25,7 +26,7 @@ function HomePage() {
             <HeadingListProduct data={listProducts.slice(0, 2)} />
             <PopularProduct data={listProducts.slice(2, listProducts.length)} />
             <SaleHomePage />
-            <div style={{ height: "200px" }}></div>
+            <MyFooter />
         </div>
     );
 }

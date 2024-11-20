@@ -7,9 +7,10 @@ function PopularProduct({ data }) {
     return (
         <MainLayout>
             <div className={container}>
-                {data.map((item) => {
+                {data.map((item, index) => {
                     return (
                         <ProductItem
+                            key={index}
                             src={item.images[0]}
                             prevSrc={item.images[1]}
                             name={item.name}

@@ -14,6 +14,7 @@ function HeadingListProduct({ data }) {
                     {data.map((item) => {
                         return (
                             <ProductItem
+                                key={item.name}
                                 src={item.images[0]}
                                 prevSrc={item.images[1]}
                                 name={item.name}
