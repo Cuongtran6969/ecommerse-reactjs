@@ -1,17 +1,10 @@
 import Button from "@components/Button/Button";
 import styles from "./styles.module.scss";
-import { useEffect } from "react";
-import useTranslateXImage from "@components/SaleHomePage/translateXImage";
+import useTranslateXImage from "@/hooks/useTranslateXImage";
 function SaleHomePage() {
     const { container, title, des, boxbtn, boxImage } = styles;
 
-    const { translateXPosition, handleTranslateX, scrollPosition } =
-        useTranslateXImage();
-
-    useEffect(() => {
-        handleTranslateX();
-    }, [scrollPosition]);
-    console.log(scrollPosition);
+    const { translateXPosition } = useTranslateXImage();
 
     return (
         <div className={container}>
