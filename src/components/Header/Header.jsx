@@ -3,13 +3,13 @@ import { dataBoxIcon, dataMenu } from "./constants";
 import Menu from "./Menu/Menu";
 import styles from "./styles.module.scss";
 import Logo from "@icons/images/adidas-logo.png";
-import heartIcon from "@icons/svgs/heartIcon.svg";
-import loadIcon from "@icons/svgs/loadIcon.svg";
-import cartIcon from "@icons/svgs/cartIcon.svg";
 import useScrollHandling from "@/hooks/useScrollHanding";
 import { useContext, useEffect, useState } from "react";
 import classNames from "classnames";
 import { SideBarContext } from "@/contexts/SidebarProvider";
+import { IoReload } from "react-icons/io5";
+import { FaRegHeart } from "react-icons/fa";
+import { BsCart4 } from "react-icons/bs";
 function MyHeader() {
     const {
         container,
@@ -25,9 +25,12 @@ function MyHeader() {
 
     const [fixedHeaderPosition, setFixedHeaderPosition] = useState(false);
 
-    const { isOpen, setIsOpen } = useContext(SideBarContext);
+    const { setIsOpen, setType } = useContext(SideBarContext);
 
-    console.log("isopne: " + isOpen);
+    const handleOpenSideBar = (type) => {
+        setIsOpen(true);
+        setType(type);
+    };
 
     useEffect(() => {
         setFixedHeaderPosition(scrollPosition > 80);
@@ -87,24 +90,13 @@ function MyHeader() {
                         })}
                     </div>
                     <div className={conatinerBoxIcon}>
-                        <img
-                            width={20}
-                            height={20}
-                            src={loadIcon}
-                            alt={loadIcon}
+                        <IoReload
+                            onClick={() => handleOpenSideBar("compare")}
                         />
-                        <img
-                            width={20}
-                            height={20}
-                            src={heartIcon}
-                            alt={heartIcon}
+                        <FaRegHeart
+                            onClick={() => handleOpenSideBar("wishlist")}
                         />
-                        <img
-                            width={20}
-                            height={20}
-                            src={cartIcon}
-                            alt={cartIcon}
-                        />
+                        <BsCart4 onClick={() => handleOpenSideBar("cart")} />
                     </div>
                 </div>
             </div>

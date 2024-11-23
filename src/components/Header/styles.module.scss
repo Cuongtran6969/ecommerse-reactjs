@@ -27,6 +27,9 @@
 }
 .conatinerBoxIcon {
     @include flex_box_custom(center, center, 10px);
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .containerBox {
