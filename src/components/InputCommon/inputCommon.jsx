@@ -2,11 +2,13 @@ import styles from "./styles.module.scss";
 import { TiEye } from "react-icons/ti";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-function InputCommon({ label, type, isRequire = false }) {
-    const { container, labelInput, boxInput, showIcon } = styles;
+function InputCommon({ label, type, isRequire = false, ...props }) {
+    const { container, labelInput, boxInput, showIcon, errMsg } = styles;
     const isPassword = type === "password";
-
+    const { formik, id } = props;
     const [showPassword, setShowPassword] = useState(false);
+    const isError = formik.errors[id] && formik.touched[id];
+    const messageErr = formik.errors[id];
 
     const isShowTextPassword =
         type === "password" && showPassword ? "text" : type;
@@ -21,16 +23,19 @@ function InputCommon({ label, type, isRequire = false }) {
                 {isRequire && <span>*</span>}
             </div>
             <div className={boxInput}>
-                <input type={isShowTextPassword} required={isRequire} />
+                <input
+                    type={isShowTextPassword}
+                    {...props}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values[id]}
+                />
                 {isPassword && (
-                    <div className={showIcon}>
-                        {showPassword ? (
-                            <IoMdEyeOff onClick={handleShowPassword} />
-                        ) : (
-                            <TiEye onClick={handleShowPassword} />
-                        )}
+                    <div className={showIcon} onClick={handleShowPassword}>
+                        {showPassword ? <IoMdEyeOff /> : <TiEye />}
                     </div>
                 )}
+                {isError && <div className={errMsg}>{messageErr}</div>}
             </div>
         </div>
     );
