@@ -1,0 +1,15 @@
+@import "@styles/mixin.module.scss";
+@import "@styles/variables.module.scss";
+.container {
+    @include flex_box_custom(space-between, space-between, 0px);
+    flex-direction: column;
+    height: 95vh;
+    padding: 30px 20px 0 20px;
+    .total {
+        @include flex_box_custom(space-between, center, 0px);
+    }
+    .boxBtn {
+        @include flex_box_custom(space-between, space-between, 10px);
+        flex-direction: column;
+    }
+}
