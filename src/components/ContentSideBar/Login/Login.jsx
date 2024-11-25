@@ -3,9 +3,9 @@ import styles from "./styles.module.scss";
 import Button from "@components/Button/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "@/contexts/ToastProvider";
-import { register, signIn } from "@/apis/authService";
+import { register, signIn, getInfo } from "@/apis/authService";
 import Cookies from "js-cookie";
 
 function Login() {
@@ -73,6 +73,9 @@ function Login() {
     };
     console.log(formik.errors);
 
+    useEffect(() => {
+        getInfo();
+    }, []);
     return (
         <div className={container}>
             <div className={title}>{isRegister ? "SIGN UP" : "SIGN IN"}</div>
