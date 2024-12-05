@@ -3,16 +3,23 @@ import styles from "./styles.module.scss";
 import Button from "@components/Button/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ToastContext } from "@/contexts/ToastProvider";
-import { register, signIn, getInfo } from "@/apis/authService";
+import { register, signIn } from "@/apis/authService";
 import Cookies from "js-cookie";
+import { StoreContext } from "@/contexts/StoreProvider";
+import { SideBarContext } from "@/contexts/SideBarProvider";
 
 function Login() {
     const { container, title, boxRememberMe, lostPassword } = styles;
     const { toast } = useContext(ToastContext);
     const [isRegister, setIsRegister] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const { userInfo, hanleLogOut, setIsLogin } = useContext(StoreContext);
+    const { isOpen, setIsOpen } = useContext(SideBarContext);
+
+    if (userInfo) {
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -54,12 +61,13 @@ function Login() {
                 await signIn({ username, password })
                     .then((res) => {
                         const { id, token, refreshToken } = res.data;
-
                         Cookies.set("token", token);
                         Cookies.set("refreshToken", refreshToken);
-
+                        Cookies.set("userId", id);
+                        toast.success("Sign successfully");
                         setIsLoading(false);
-                        console.log(res);
+                        setIsOpen(false);
+                        setIsLogin(true);
                     })
                     .catch((err) => {
                         setIsLoading(false);
@@ -73,9 +81,6 @@ function Login() {
     };
     console.log(formik.errors);
 
-    useEffect(() => {
-        getInfo();
-    }, []);
     return (
         <div className={container}>
             <div className={title}>{isRegister ? "SIGN UP" : "SIGN IN"}</div>
